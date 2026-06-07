@@ -3,120 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNPSC 20K MCQ Master - ₹99</title>
+    <title>TNPSC Master Brain - Group 1,2,4 & VAO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-   :root { --bg: #f3f4f6; --card: #ffffff; --text: #1f2937; }
-.dark { --bg: #111827; --card: #1f2937; --text: #f9fafb; }
-   body { background: var(--bg); color: var(--text); }
-.card { background: var(--card); }
-.quiz-option.correct { background: #dcfce7; border-color: #16a34a; }
-.quiz-option.wrong { background: #fee2e2; border-color: #dc2626; }
-.topic-btn.locked { opacity: 0.5; background: #e5e7eb; }
-.tag-stage1 { background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
-.tag-stage2 { background: #fed7aa; color: #9a3412; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
-.explanation-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 8px; margin-top: 8px; font-size: 12px; }
+        html { scroll-behavior: smooth; }
+        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .card-hover { transition: all 0.3s; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .quiz-option.correct { background: #dcfce7; border-color: #16a34a; }
+        .quiz-option.wrong { background: #fee2e2; border-color: #dc2626; }
+        .topic-btn.locked { opacity: 0.5; background: #e5e7eb; }
+        .modal-backdrop { backdrop-filter: blur(8px); }
     </style>
 </head>
-<body>
+<body class="bg-gray-50">
 
-    <div class="bg-gradient-to-r from-red-600 to-purple-600 text-white text-center py-2 text-xs font-bold">
-        50 Free → Login 50 More → ₹99 Full Access
-    </div>
-
-    <nav class="card p-3 shadow flex justify-between items-center sticky top-0 z-50">
-        <h1 class="font-bold text-purple-700">20K MCQ Master</h1>
-        <div class="flex gap-2 items-center">
-            <span id="user-name" class="hidden text-xs font-bold"></span>
-            <span id="premium-badge" class="hidden px-2 py-0.5 bg-yellow-400 text-white rounded text-xs font-bold">👑 Premium</span>
-            <button id="login-btn" class="px-3 py-1 rounded border text-xs font-bold bg-blue-600 text-white">Login</button>
-            <button id="logout-btn" class="hidden px-3 py-1 rounded border text-xs font-bold bg-red-600 text-white">Logout</button>
+    <!-- Navbar -->
+    <nav class="hero-gradient text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="font-bold text-xl">TNPSC Master Brain</h1>
+            <div class="hidden md:flex gap-6 text-sm">
+                <a href="#home" class="hover:text-yellow-300">Home</a>
+                <a href="#courses" class="hover:text-yellow-300">Courses</a>
+                <a href="#mock-tests" class="hover:text-yellow-300">Mock Tests</a>
+                <a href="#current-affairs" class="hover:text-yellow-300">Current Affairs</a>
+            </div>
+            <div class="flex gap-2 items-center">
+                <span id="user-name" class="hidden text-xs font-bold"></span>
+                <button id="login-btn" class="bg-white text-blue-600 px-4 py-1.5 rounded-lg text-sm font-bold">Login</button>
+                <button id="logout-btn" class="hidden bg-red-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold">Logout</button>
+            </div>
         </div>
     </nav>
 
-    <main class="p-3 max-w-7xl mx-auto">
-
-        <!-- Login Modal -->
-        <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-            <div class="card p-6 rounded-xl max-w-sm w-full text-center">
-                <h2 class="font-bold text-xl mb-3">🎁 Unlock 50 More Free Qs</h2>
-                <input type="email" id="email-input" placeholder="yourname@gmail.com" class="w-full p-3 rounded border mb-3 text-sm">
-                <button id="login-submit-btn" class="w-full bg-red-500 text-white px-6 py-3 rounded-lg text-sm font-bold mb-2">
-                    Login with Gmail
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-16 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">TNPSC Group 1, Group 2, Group 4 & VAO</h2>
+            <p class="text-xl mb-2">Online Test Series</p>
+            <p class="text-sm mb-6 opacity-90">Daily Tests • Full Mock Exams • Rank Analysis • Detailed Explanations</p>
+            <div class="flex gap-4 justify-center flex-wrap">
+                <button id="demo-btn" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-base font-bold shadow-lg">
+                    Free Demo Test
                 </button>
-                <button id="login-close-btn" class="text-xs text-gray-500">Skip</button>
+                <button id="premium-btn" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-8 py-3 rounded-lg text-base font-bold shadow-lg">
+                    Join Premium
+                </button>
             </div>
         </div>
+    </section>
 
-        <!-- Stage Banner -->
-        <div class="card p-3 rounded-xl shadow mb-3 text-center">
-            <div id="banner-text" class="text-sm font-bold">🎁 Stage 1: 50 Free Qs | No Login Needed</div>
-            <a href="upi://pay?pa=futuristicnandhu-1@okaxis&pn=TNPSC&am=99&cu=INR" id="payment-link"
-               class="hidden inline-block mt-2 bg-purple-600 text-white px-6 py-2 rounded-lg text-sm font-bold">
-                Unlock All ₹99
-            </a>
-        </div>
-
-        <!-- Topics -->
-        <div class="card p-3 rounded-xl shadow mb-3">
-            <h3 class="font-bold text-sm mb-2">Topics</h3>
-            <div id="topics-grid" class="grid grid-cols-2 gap-2"></div>
-        </div>
-
-        <!-- Quiz Section -->
-        <div id="quiz-section" class="card p-4 rounded-xl shadow hidden">
-            <div class="bg-purple-50 p-3 rounded-lg mb-3">
-                <h3 id="current-topic" class="font-bold text-purple-800 text-base"></h3>
-                <span id="stage-tag" class="text-xs"></span>
+    <!-- Stats Section -->
+    <section class="py-12 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-6 rounded-xl shadow-md text-center card-hover">
+                <h3 class="text-3xl font-bold text-blue-600">20,000+</h3>
+                <p class="text-gray-600 text-sm mt-1">Questions</p>
             </div>
-
-            <div class="border-2 border-dashed p-3 rounded-xl">
-                <p id="q-counter" class="text-xs mb-2">1 / 10</p>
-                <p id="question-text" class="font-semibold mb-3 text-sm"></p>
-                <div id="options-box" class="space-y-2"></div>
-                <div id="result-box" class="mt-2 text-sm font-bold text-center"></div>
-                <div id="explanation-box" class="hidden explanation-box"></div>
-                <button id="next-btn" class="hidden mt-3 w-full bg-purple-600 text-white py-2 rounded-lg text-sm">Next</button>
+            <div class="bg-white p-6 rounded-xl shadow-md text-center card-hover">
+                <h3 class="text-3xl font-bold text-blue-600">5,000+</h3>
+                <p class="text-gray-600 text-sm mt-1">Students</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md text-center card-hover">
+                <h3 class="text-3xl font-bold text-blue-600">500+</h3>
+                <p class="text-gray-600 text-sm mt-1">Mock Tests</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md text-center card-hover">
+                <h3 class="text-3xl font-bold text-blue-600">95%</h3>
+                <p class="text-gray-600 text-sm mt-1">Satisfaction</p>
             </div>
         </div>
+    </section>
 
-    </main>
+    <!-- Why Choose Us -->
+    <section id="courses" class="py-12 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Why Choose Us?</h2>
+            <div class="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                <div class="bg-gray-50 p-5 rounded-xl shadow card-hover">
+                    <i class="fas fa-list-check text-blue-600 text-2xl mb-2"></i>
+                    <h3 class="font-bold mb-1">Topic Wise Tests</h3>
+                    <p class="text-sm text-gray-600">200 Topics | 100 Qs Each</p>
+                </div>
+                <div class="bg-gray-50 p-5 rounded-xl shadow card-hover">
+                    <i class="fas fa-trophy text-blue-600 text-2xl mb-2"></i>
+                    <h3 class="font-bold mb-1">State Rank List</h3>
+                    <p class="text-sm text-gray-600">Compare with 5000+ Students</p>
+                </div>
+                <div class="bg-gray-50 p-5 rounded-xl shadow card-hover">
+                    <i class="fas fa-robot text-blue-600 text-2xl mb-2"></i>
+                    <h3 class="font-bold mb-1">AI Explanations</h3>
+                    <p class="text-sm text-gray-600">Detailed Answer Analysis</p>
+                </div>
+                <div class="bg-gray-50 p-5 rounded-xl shadow card-hover">
+                    <i class="fas fa-mobile-alt text-blue-600 text-2xl mb-2"></i>
+                    <h3 class="font-bold mb-1">Mobile Friendly</h3>
+                    <p class="text-sm text-gray-600">Learn Anywhere, Anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="mock-tests" class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Pricing</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center card-hover border-2 border-gray-200">
+                    <h3 class="font-bold text-xl mb-2">Group 4</h3>
+                    <p class="text-4xl font-bold text-blue-600 mb-4">₹299</p>
+                    <ul class="text-sm text-left space-y-2 mb-6 text-gray-600">
+                        <li><i class="fas fa-check text-green-500"></i> 5,000+ Questions</li>
+                        <li><i class="fas fa-check text-green-500"></i> 50 Mock Tests</li>
+                        <li><i class="fas fa-check text-green-500"></i> Current Affairs 2025-26</li>
+                    </ul>
+                    <button class="buy-btn w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-bold" data-amt="299" data-plan="Group 4">
+                        Buy Now
+                    </button>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center card-hover border-2 border-gray-200">
+                    <h3 class="font-bold text-xl mb-2">Group 2</h3>
+                    <p class="text-4xl font-bold text-blue-600 mb-4">₹499</p>
+                    <ul class="text-sm text-left space-y-2 mb-6 text-gray-600">
+                        <li><i class="fas fa-check text-green-500"></i> 10,000+ Questions</li>
+                        <li><i class="fas fa-check text-green-500"></i> 100 Mock Tests</li>
+                        <li><i class="fas fa-check text-green-500"></i> PYQ 2010-2025</li>
+                    </ul>
+                    <button class="buy-btn w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-bold" data-amt="499" data-plan="Group 2">
+                        Buy Now
+                    </button>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center card-hover border-2 border-purple-500 relative">
+                    <span class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">Popular</span>
+                    <h3 class="font-bold text-xl mb-2">Group 1</h3>
+                    <p class="text-4xl font-bold text-purple-600 mb-4">₹999</p>
+                    <ul class="text-sm text-left space-y-2 mb-6 text-gray-600">
+                        <li><i class="fas fa-check text-green-500"></i> 15,000+ Questions</li>
+                        <li><i class="fas fa-check text-green-500"></i> 200 Mock Tests</li>
+                        <li><i class="fas fa-check text-green-500"></i> Mains Answer Writing</li>
+                    </ul>
+                    <button class="buy-btn w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-lg font-bold" data-amt="999" data-plan="Group 1">
+                        Buy Now
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-xl shadow-lg text-center card-hover border-2 border-yellow-400">
+                    <h3 class="font-bold text-xl mb-2">Complete Package</h3>
+                    <p class="text-4xl font-bold text-orange-600 mb-4">₹1499</p>
+                    <ul class="text-sm text-left space-y-2 mb-6 text-gray-700">
+                        <li><i class="fas fa-check text-green-500"></i> 20,000+ Questions</li>
+                        <li><i class="fas fa-check text-green-500"></i> All Groups 1,2,4,VAO</li>
+                        <li><i class="fas fa-check text-green-500"></i> Lifetime Access</li>
+                    </ul>
+                    <button class="buy-btn w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2.5 rounded-lg font-bold" data-amt="1499" data-plan="Complete">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz App Section - Hidden Initially -->
+    <section id="quiz-app" class="hidden py-8 px-4 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-white p-4 rounded-xl shadow mb-4 text-center">
+                <h3 class="font-bold text-lg mb-2">🎁 <span id="stage-text">Stage 1: 50 Free Qs</span></h3>
+                <button id="back-home-btn" class="text-sm text-blue-600 underline">← Back to Home</button>
+            </div>
+            <div id="topics-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4"></div>
+            <div id="quiz-section" class="hidden bg-white p-4 rounded-xl shadow"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="hero-gradient text-white py-6 text-center text-sm">
+        © 2026 TNPSC Master Brain | All Rights Reserved
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 modal-backdrop bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white p-6 rounded-xl max-w-sm w-full">
+            <h2 class="font-bold text-xl mb-4 text-center">Login to Continue</h2>
+            <input type="email" id="email-input" placeholder="yourname@gmail.com" class="w-full p-3 rounded border mb-3">
+            <button id="login-submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold mb-2">Login with Gmail</button>
+            <button id="login-close" class="w-full text-gray-500 text-sm">Cancel</button>
+        </div>
+    </div>
 
     <script>
-        // ========== CONFIG ==========
-        const STAGE1_TOPICS = 5; // First 5 = 50 Qs Free
-        const STAGE2_TOPICS = 5; // Next 5 = 50 Qs After Login
-        const QS_PER_TOPIC = 10;
-
-        // ========== DATABASE ==========
-        const ALL_TOPICS = [
-            "1. எழுத்து-பிரித்தல்", "2. சேர்த்தல்", "3. சந்திப்பிழை", "4. குறில்-நெடில்", "5. ல-ள-ழ",
-            "6. ன-ண", "7. ர-ற", "8. இன எழுத்து", "9. சுட்டு எழுத்து", "10. வினா எழுத்து",
-            "11. ஒருமை-பன்மை", "12. வேர்ச்சொல்", "13. வினைமுற்று", "14. வினையெச்சம்", "15. பெயரெச்சம்"
-        ];
-
-        const QUESTIONS = {
-            "1. எழுத்து-பிரித்தல்": [
-                { q: "நன்மை - பிரித்து எழுதுக", options: ["நன் + மை", "நல் + மை", "நன + மை", "நன்ம + ஐ"], ans: 1, exp: "நல் + மை = நன்மை" },
-                { q: "வாழ்க்கை - பிரித்து எழுதுக", options: ["வாழ் + கை", "வாழ + க்கை", "வா + ழ்க்கை", "வாழ்க் + கை"], ans: 0, exp: "வாழ் + கை = வாழ்க்கை" }
-            ]
-        };
-
         // ========== STATE ==========
         let currentUser = JSON.parse(localStorage.getItem('tnpsc-user') || 'null');
         let isPremium = localStorage.getItem('tnpsc-premium') === 'true';
         let stage1Count = parseInt(localStorage.getItem('stage1-count') || '0');
         let stage2Count = parseInt(localStorage.getItem('stage2-count') || '0');
-        let currentTopic = '';
-        let qIndex = 0;
-        let currentQs = [];
+
+        const ALL_TOPICS = [
+            "1. எழுத்து-பிரித்தல்", "2. சேர்த்தல்", "3. சந்திப்பிழை", "4. குறில்-நெடில்", "5. ல-ள-ழ",
+            "6. ன-ண", "7. ர-ற", "8. இன எழுத்து", "9. சுட்டு எழுத்து", "10. வினா எழுத்து"
+        ];
+
+        const QUESTIONS = {
+            "1. எழுத்து-பிரித்தல்": [
+                { q: "நன்மை - பிரித்து எழுதுக", options: ["நன் + மை", "நல் + மை", "நன + மை", "நன்ம + ஐ"], ans: 1 },
+                { q: "வாழ்க்கை - பிரித்து எழுதுக", options: ["வாழ் + கை", "வாழ + க்கை", "வா + ழ்க்கை", "வாழ்க் + கை"], ans: 0 }
+            ]
+        };
+
+        let currentTopic = '', qIndex = 0, currentQs = [];
 
         // ========== INIT ==========
         document.addEventListener('DOMContentLoaded', function() {
             updateUI();
-            loadTopics();
             setupEvents();
+            loadTopics();
         });
 
         function updateUI() {
@@ -125,167 +227,142 @@
                 document.getElementById('user-name').classList.remove('hidden');
                 document.getElementById('login-btn').classList.add('hidden');
                 document.getElementById('logout-btn').classList.remove('hidden');
-                if (isPremium) document.getElementById('premium-badge').classList.remove('hidden');
             }
+        }
 
-            let banner = document.getElementById('banner-text');
-            if (isPremium) {
-                banner.textContent = '👑 Premium Active | 20,000 Qs Unlocked';
-            } else if (currentUser) {
-                let remaining = (STAGE2_TOPICS * QS_PER_TOPIC) - stage2Count;
-                banner.textContent = `🎁 Stage 2: ${remaining} More Free Qs`;
-                document.getElementById('payment-link').classList.remove('hidden');
-            } else {
-                let remaining = (STAGE1_TOPICS * QS_PER_TOPIC) - stage1Count;
-                banner.textContent = `🎁 Stage 1: ${remaining} Free Qs | No Login Needed`;
-            }
+        function setupEvents() {
+            document.getElementById('login-btn').onclick = () => document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('login-close').onclick = () => document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('login-submit').onclick = login;
+            document.getElementById('logout-btn').onclick = logout;
+            document.getElementById('demo-btn').onclick = () => showQuizApp();
+            document.getElementById('premium-btn').onclick = () => document.getElementById('mock-tests').scrollIntoView();
+            document.getElementById('back-home-btn').onclick = () => {
+                document.getElementById('quiz-app').classList.add('hidden');
+                window.scrollTo(0, 0);
+            };
+
+            document.querySelectorAll('.buy-btn').forEach(btn => {
+                btn.onclick = function() {
+                    let amt = this.dataset.amt;
+                    let plan = this.dataset.plan;
+                    window.location.href = `upi://pay?pa=futuristicnandhu-1@okaxis&pn=TNPSC&am=${amt}&cu=INR`;
+                    setTimeout(() => {
+                        let utr = prompt(`₹${amt} ${plan} Payment UTR Enter பண்ணுங்க (Test: DEMO):`);
+                        if (utr && utr.length > 3) {
+                            localStorage.setItem('tnpsc-premium', 'true');
+                            alert('✅ Premium Unlocked!');
+                            location.reload();
+                        }
+                    }, 1000);
+                };
+            });
+        }
+
+        function login() {
+            const email = document.getElementById('email-input').value.trim();
+            if (!email.includes('@')) return alert('Valid Email Enter பண்ணுங்க');
+            currentUser = { name: email.split('@')[0], email: email };
+            localStorage.setItem('tnpsc-user', JSON.stringify(currentUser));
+            document.getElementById('login-modal').classList.add('hidden');
+            updateUI();
+            loadTopics();
+            alert('✅ Login Success! 50 More Free Qs Unlocked');
+        }
+
+        function logout() {
+            localStorage.clear();
+            location.reload();
+        }
+
+        function showQuizApp() {
+            document.getElementById('quiz-app').classList.remove('hidden');
+            document.getElementById('quiz-app').scrollIntoView();
+            updateStageText();
+        }
+
+        function updateStageText() {
+            let text = isPremium? '👑 Premium Active' : currentUser? `Stage 2: ${50-stage2Count} Free Qs Left` : `Stage 1: ${50-stage1Count} Free Qs Left`;
+            document.getElementById('stage-text').textContent = text;
         }
 
         function loadTopics() {
             const grid = document.getElementById('topics-grid');
             grid.innerHTML = ALL_TOPICS.map((topic, idx) => {
-                let access = getTopicAccess(idx);
+                let access = getAccess(idx);
+                let locked = access === 'locked'? 'locked' : '';
                 let lockIcon = access === 'locked'? '🔒 ' : '';
-                let lockedClass = access === 'locked'? 'locked' : '';
-                let stageTag = '';
-                if (idx < STAGE1_TOPICS) stageTag = '<span class="tag-stage1">Free</span>';
-                else if (idx < STAGE1_TOPICS + STAGE2_TOPICS) stageTag = '<span class="tag-stage2">Login</span>';
-
-                return `<button class="topic-btn px-2 py-2 rounded border text-xs font-bold ${lockedClass}" data-topic="${topic}" data-idx="${idx}">
-                    ${lockIcon}${stageTag} ${topic}
+                let tag = idx < 5? '🆓' : idx < 10? '🔑' : '👑';
+                return `<button class="topic-btn bg-white p-3 rounded-lg shadow text-xs font-bold text-left ${locked}" data-topic="${topic}" data-idx="${idx}">
+                    ${lockIcon}${tag} ${topic}
                 </button>`;
             }).join('');
 
             document.querySelectorAll('.topic-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    let idx = parseInt(this.dataset.idx);
-                    let access = getTopicAccess(idx);
-                    if (access === 'locked') {
-                        if (!currentUser) showLogin();
-                        else showPaymentPrompt();
+                btn.onclick = function() {
+                    if (this.classList.contains('locked')) {
+                        if (!currentUser) document.getElementById('login-modal').classList.remove('hidden');
+                        else document.getElementById('mock-tests').scrollIntoView();
                         return;
                     }
                     startQuiz(this.dataset.topic);
-                });
+                };
             });
         }
 
-        function getTopicAccess(idx) {
+        function getAccess(idx) {
             if (isPremium) return 'premium';
-            if (idx < STAGE1_TOPICS) return 'stage1';
-            if (currentUser && idx < STAGE1_TOPICS + STAGE2_TOPICS) return 'stage2';
+            if (idx < 5) return 'stage1';
+            if (currentUser && idx < 10) return 'stage2';
             return 'locked';
-        }
-
-        function setupEvents() {
-            document.getElementById('login-btn').addEventListener('click', showLogin);
-            document.getElementById('logout-btn').addEventListener('click', logout);
-            document.getElementById('login-submit-btn').addEventListener('click', login);
-            document.getElementById('login-close-btn').addEventListener('click', closeLogin);
-            document.getElementById('next-btn').addEventListener('click', nextQuestion);
-        }
-
-        function showLogin() {
-            document.getElementById('login-modal').classList.remove('hidden');
-        }
-
-        function closeLogin() {
-            document.getElementById('login-modal').classList.add('hidden');
-        }
-
-        function login() {
-            const email = document.getElementById('email-input').value.trim();
-            if (!email.includes('@')) {
-                alert('Valid Email Enter பண்ணுங்க');
-                return;
-            }
-            currentUser = { name: email.split('@')[0], email: email };
-            localStorage.setItem('tnpsc-user', JSON.stringify(currentUser));
-            localStorage.setItem('stage2-count', '0');
-            closeLogin();
-            updateUI();
-            loadTopics();
-            alert('✅ Login Success! இப்போ 50 More Free Qs Attend பண்ணலாம்');
-        }
-
-        function logout() {
-            localStorage.removeItem('tnpsc-user');
-            localStorage.removeItem('tnpsc-premium');
-            location.reload();
-        }
-
-        function showPaymentPrompt() {
-            if (confirm('20,000 Qs Unlock பண்ண ₹99 Pay பண்ணுங்க\n\nOK = Payment\nCancel = Close')) {
-                window.location.href = 'upi://pay?pa=futuristicnandhu-1@okaxis&pn=TNPSC&am=99&cu=INR';
-                setTimeout(() => {
-                    let utr = prompt('Payment UTR Number Enter பண்ணுங்க (Testing: DEMO):');
-                    if (utr && utr.length > 3) {
-                        localStorage.setItem('tnpsc-premium', 'true');
-                        isPremium = true;
-                        alert('✅ Premium Unlocked!');
-                        location.reload();
-                    }
-                }, 1000);
-            }
         }
 
         function startQuiz(topic) {
             currentTopic = topic;
-            currentQs = QUESTIONS[topic] || [{ q: "Sample Question", options: ["A", "B", "C", "D"], ans: 0, exp: "Sample" }];
+            currentQs = QUESTIONS[topic] || [{ q: "Sample", options: ["A","B","C","D"], ans: 0 }];
             qIndex = 0;
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('current-topic').textContent = topic;
             showQuestion();
         }
 
         function showQuestion() {
             let q = currentQs[qIndex];
-            if (!q) return;
-            document.getElementById('q-counter').textContent = `${qIndex + 1} / ${currentQs.length}`;
-            document.getElementById('question-text').textContent = q.q;
-            document.getElementById('options-box').innerHTML = q.options.map((opt, i) =>
-                `<button class="quiz-option w-full p-2 border rounded text-left text-sm" data-idx="${i}">${opt}</button>`
-            ).join('');
-            document.getElementById('result-box').textContent = '';
-            document.getElementById('explanation-box').classList.add('hidden');
-            document.getElementById('next-btn').classList.add('hidden');
+            let quizEl = document.getElementById('quiz-section');
+            quizEl.classList.remove('hidden');
+            quizEl.innerHTML = `
+                <h3 class="font-bold mb-3">${currentTopic}</h3>
+                <p class="text-sm mb-3">${qIndex+1}/${currentQs.length}. ${q.q}</p>
+                <div class="space-y-2">
+                    ${q.options.map((opt,i) => `<button class="quiz-option w-full p-2 border rounded text-left text-sm" data-idx="${i}">${opt}</button>`).join('')}
+                </div>
+                <div id="result" class="mt-3 text-sm font-bold"></div>
+                <button id="next-q" class="hidden mt-3 w-full bg-blue-600 text-white py-2 rounded">Next</button>
+            `;
 
             document.querySelectorAll('.quiz-option').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    checkAnswer(parseInt(this.dataset.idx));
-                });
+                btn.onclick = function() {
+                    let selected = parseInt(this.dataset.idx);
+                    let correct = selected === q.ans;
+                    document.querySelectorAll('.quiz-option').forEach((b,i) => {
+                        b.disabled = true;
+                        if (i === q.ans) b.classList.add('correct');
+                        if (i === selected && !correct) b.classList.add('wrong');
+                    });
+                    document.getElementById('result').textContent = correct? '✅ Correct!' : '❌ Wrong!';
+                    document.getElementById('next-q').classList.remove('hidden');
+
+                    // Update count
+                    let topicIdx = ALL_TOPICS.indexOf(currentTopic);
+                    if (topicIdx < 5) localStorage.setItem('stage1-count', ++stage1Count);
+                    else if (topicIdx < 10) localStorage.setItem('stage2-count', ++stage2Count);
+                    updateStageText();
+                };
             });
-        }
 
-        function checkAnswer(selected) {
-            let q = currentQs[qIndex];
-            let correct = selected === q.ans;
-            document.querySelectorAll('.quiz-option').forEach((btn, i) => {
-                btn.disabled = true;
-                if (i === q.ans) btn.classList.add('correct');
-                if (i === selected &&!correct) btn.classList.add('wrong');
-            });
-            document.getElementById('result-box').textContent = correct? '✅ Correct!' : '❌ Wrong!';
-            document.getElementById('explanation-box').textContent = q.exp;
-            document.getElementById('explanation-box').classList.remove('hidden');
-            document.getElementById('next-btn').classList.remove('hidden');
-
-            // Update counts
-            let topicIdx = ALL_TOPICS.indexOf(currentTopic);
-            if (topicIdx < STAGE1_TOPICS) {
-                stage1Count++;
-                localStorage.setItem('stage1-count', stage1Count);
-            } else if (topicIdx < STAGE1_TOPICS + STAGE2_TOPICS) {
-                stage2Count++;
-                localStorage.setItem('stage2-count', stage2Count);
-            }
-            updateUI();
-        }
-
-        function nextQuestion() {
-            qIndex++;
-            if (qIndex < currentQs.length) showQuestion();
-            else alert('Topic Complete!');
+            document.getElementById('next-q').onclick = () => {
+                qIndex++;
+                if (qIndex < currentQs.length) showQuestion();
+                else alert('Topic Complete!');
+            };
         }
     </script>
 </body>
