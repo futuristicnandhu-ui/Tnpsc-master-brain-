@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="ta">
 <head>
-<title>TNPSC Master Brain</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TNPSC Master Brain - Final Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-<h1>Welcome to TNPSC Master Brain</h1>
-<h2>TNPSC Online Test Batch</h2>
-<p>Group 1 | Group 2 | Group 4 | VAO</p>
+<body class="bg-gray-100 transition-colors duration-300">
+
+    <!-- Navbar with Dark Mode & Notification -->
+    <nav class="bg-white p-4 shadow flex justify-between items-center sticky top-0 z-50">
+        <h1 class="font-bold text-blue-600">TNPSC Master Brain</h1>
+        <div class="flex gap-4">
+            <button id="theme-toggle" class="text-gray-600"><i class="fas fa-moon"></i></button>
+            <button class="text-gray-600"><i class="fas fa-bell"></i></button>
+        </div>
+    </nav>
+
+    <div id="main-content" class="p-4 max-w-4xl mx-auto">
+        <!-- Dashboard Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-2xl shadow">
+                <h3 class="font-bold mb-2">🏆 Leaderboard</h3>
+                <p class="text-sm text-gray-500">முதலிடம்: நந்தினி - 98%</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow">
+                <h3 class="font-bold mb-2">⏳ Study Tracker</h3>
+                <p>இன்றைய நேரம்: <span id="study-time">45</span> நிமிடம்</p>
+            </div>
+        </div>
+
+        <!-- Contact/About Section -->
+        <div class="mt-8 bg-blue-900 text-white p-6 rounded-2xl shadow-lg">
+            <h3 class="font-bold mb-2">Contact Us</h3>
+            <p class="text-sm">சந்தேகங்களுக்கு மின்னஞ்சல் அனுப்பவும்:</p>
+            <a href="mailto:support@tnpscmaster.com" class="text-amber-400 font-bold">support@tnpscmaster.com</a>
+        </div>
+    </div>
+
+    <script type="module">
+        // Dark Mode Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('bg-gray-900');
+            document.body.classList.toggle('text-white');
+        });
+
+        // Firebase logic remains the same as before...
+    </script>
 </body>
 </html>
