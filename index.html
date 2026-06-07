@@ -20,6 +20,8 @@
 .tag-ca2025 { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
 .tag-ca2026 { background: #bbf7d0; color: #166534; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
 .tag-demo { background: #f3e8ff; color: #6b21a8; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+.tag-stage1 { background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+.tag-stage2 { background: #fed7aa; color: #9a3412; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
 .main-tab.active { background: #7c3aed; color: white; }
 .topic-btn.active { background: #059669; color: white; }
 .topic-btn.locked { opacity: 0.6; background: #f3f4f6; cursor: not-allowed; }
@@ -35,7 +37,7 @@
 
     <!-- Top Bar -->
     <div class="bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 text-white text-center py-2 text-xs font-bold">
-        TNPSC 20K MCQ Master | Gmail Login | 100 Demo Free | ₹99 Full Access
+        TNPSC 20K MCQ | 50 Free → Login 50 More → ₹99 Full Access
     </div>
 
     <!-- Navbar -->
@@ -50,8 +52,11 @@
             <button onclick="toggleNightMode()" id="night-btn" class="px-3 py-1 rounded border text-xs font-bold">
                 <i class="fas fa-moon"></i>
             </button>
-            <button onclick="showStats()" id="stats-btn" class="hidden px-3 py-1 rounded border text-xs font-bold bg-green-600 text-white">
+            <button onclick="showStats()" id="stats-btn" class="px-3 py-1 rounded border text-xs font-bold bg-green-600 text-white">
                 <i class="fas fa-chart-line"></i>
+            </button>
+            <button onclick="showLogin()" id="login-btn" class="px-3 py-1 rounded border text-xs font-bold bg-blue-600 text-white">
+                <i class="fas fa-sign-in-alt"></i> Login
             </button>
             <button onclick="logoutUser()" id="logout-btn" class="hidden px-3 py-1 rounded border text-xs font-bold bg-red-600 text-white">
                 <i class="fas fa-sign-out-alt"></i>
@@ -65,34 +70,43 @@
     <main class="p-3 max-w-7xl mx-auto">
 
         <!-- Login Overlay -->
-        <div id="login-overlay" class="fixed inset-0 login-overlay bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div id="login-overlay" class="hidden fixed inset-0 login-overlay bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
             <div class="card p-8 rounded-xl max-w-md w-full text-center">
-                <div class="text-6xl mb-4">🎓</div>
-                <h2 class="font-bold text-2xl mb-2">TNPSC 20K MCQ Master</h2>
+                <div class="text-6xl mb-4">🎁</div>
+                <h2 class="font-bold text-2xl mb-2">Unlock 50 More Free Qs!</h2>
                 <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">
-                    Gmail Login பண்ணி 100 Demo Questions Free<br>
-                    Full 20,000 Qs Access வெறும் ₹99
+                    Gmail Login பண்ணி இன்னும் 50 Questions Free<br>
+                    Full 20,000 Qs வேணும்னா வெறும் ₹99
                 </p>
-                <button onclick="loginWithGmail()" class="w-full bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 px-6 py-3 rounded-lg text-sm font-bold mb-3 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <i class="fab fa-google text-red-500"></i> Continue with Gmail
+                <input type="email" id="email-input" placeholder="yourname@gmail.com"
+                       class="w-full p-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 mb-3 text-sm card">
+                <button onclick="loginWithGmail()" class="w-full bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg text-sm font-bold mb-3">
+                    <i class="fab fa-google"></i> Login & Get 50 Free Qs
                 </button>
-                <p class="text-xs text-gray-500">100% Free Demo | No Card Required</p>
+                <button onclick="closeLogin()" class="text-xs text-gray-500 underline">Skip for now</button>
             </div>
         </div>
 
-        <!-- Premium Banner -->
-        <div id="premium-banner" class="hidden card p-3 rounded-xl shadow mb-3 text-center bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900 dark:to-orange-900">
-            <p class="text-sm font-bold mb-2">🎁 <span id="demo-remaining">100</span> Demo Qs Left | Unlock 20,000 Qs</p>
-            <a href="upi://pay?pa=futuristicnandhu-1@okaxis&pn=TNPSC Master&am=99&cu=INR"
-               onclick="handlePayment()"
-               class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg text-sm font-bold">
-                <i class="fab fa-google-pay"></i> Unlock All ₹99 Only
-            </a>
-            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">One Time Payment | Lifetime Access</p>
+        <!-- Stage Banner -->
+        <div id="stage-banner" class="card p-3 rounded-xl shadow mb-3 text-center">
+            <div id="stage1-banner" class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-2 rounded">
+                <p class="text-sm font-bold">🎁 Stage 1: <span id="stage1-remaining">50</span> Free Qs | No Login Needed</p>
+            </div>
+            <div id="stage2-banner" class="hidden bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900 dark:to-amber-900 p-2 rounded">
+                <p class="text-sm font-bold mb-2">🎁 Stage 2: <span id="stage2-remaining">50</span> More Free Qs Unlocked!</p>
+                <a href="upi://pay?pa=futuristicnandhu-1@okaxis&pn=TNPSC Master&am=99&cu=INR"
+                   onclick="handlePayment()"
+                   class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg text-sm font-bold">
+                    <i class="fab fa-google-pay"></i> Unlock All 20,000 Qs ₹99
+                </a>
+            </div>
+            <div id="stage3-banner" class="hidden bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900 dark:to-orange-900 p-2 rounded">
+                <p class="text-sm font-bold">👑 Premium Active | 20,000 Qs Unlocked</p>
+            </div>
         </div>
 
         <!-- Main Content -->
-        <div id="main-content" class="hidden">
+        <div id="main-content">
             <!-- Main Subject Tabs -->
             <div class="grid grid-cols-2 gap-2 mb-3">
                 <button class="main-tab px-4 py-3 rounded-xl border font-bold text-sm active" data-main="tamil">
@@ -129,22 +143,22 @@
             <!-- Quiz Section -->
             <div id="quiz-section" class="card p-4 rounded-xl shadow hidden relative">
 
-                <!-- Paywall Overlay -->
+                <!-- Paywall/Login Overlay -->
                 <div id="paywall-overlay" class="hidden absolute inset-0 paywall-overlay bg-black bg-opacity-50 z-40 flex items-center justify-center rounded-xl">
                     <div class="card p-6 rounded-xl max-w-sm text-center">
-                        <div class="text-5xl mb-3">🔒</div>
-                        <h3 class="font-bold text-lg mb-2">Premium Topic</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                            Demo 100 Qs முடிஞ்சுருச்சு!<br>
-                            20,000 Qs Unlock பண்ண ₹99 Pay பண்ணுங்க
+                        <div id="lock-icon" class="text-5xl mb-3">🔒</div>
+                        <h3 class="font-bold text-lg mb-2" id="lock-title">Login Required</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4" id="lock-desc">
+                            50 More Free Qs Attend பண்ண Login பண்ணுங்க
                         </p>
-                        <a href="upi://pay?pa=futuristicnandhu-1@okaxis&pn=TNPSC Master&am=99&cu=INR"
-                           onclick="handlePayment()"
-                           class="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg text-sm font-bold mb-2">
-                            <i class="fab fa-google-pay"></i> Pay ₹99 & Unlock
-                        </a>
-                        <button onclick="verifyPayment()" class="text-xs text-blue-600 dark:text-blue-400 underline">
-                            Already Paid? Verify Payment
+                        <button id="lock-action-btn" onclick="showLogin()"
+                                class="block w-full bg-blue-600 text-white px-6 py-3 rounded-lg text-sm font-bold mb-2">
+                            <i class="fab fa-google"></i> Login with Gmail
+                        </button>
+                        <input type="text" id="payment-code" placeholder="UTR Number / Type DEMO"
+                               class="hidden w-full p-2 rounded border text-xs mb-2 card">
+                        <button id="verify-btn" onclick="verifyPayment()" class="hidden w-full bg-purple-600 text-white py-2 rounded-lg text-xs font-bold">
+                            Verify Payment
                         </button>
                     </div>
                 </div>
@@ -157,7 +171,7 @@
                         </div>
                         <div class="text-right">
                             <span id="q-total" class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-bold">100 Qs</span>
-                            <div id="demo-badge" class="mt-1"><span class="tag-demo">Demo</span></div>
+                            <div id="stage-badge" class="mt-1"><span class="tag-stage1">Stage 1</span></div>
                         </div>
                     </div>
                 </div>
@@ -197,8 +211,6 @@
                     <p>✅ Total Correct: <b id="modal-correct">0</b></p>
                     <p>❌ Total Wrong: <b id="modal-wrong">0</b></p>
                     <p>📈 Accuracy: <b id="modal-accuracy">0%</b></p>
-                    <p>🎯 Strong Topics: <span id="strong-topics">-</span></p>
-                    <p>⚠️ Weak Topics: <span id="weak-topics">-</span></p>
                 </div>
                 <button onclick="resetStats()" class="mt-3 w-full bg-red-600 text-white py-2 rounded-lg text-sm">Reset Stats</button>
             </div>
@@ -207,25 +219,72 @@
     </main>
 
     <script type="module">
-        // ========== USER & PAYMENT CONTROL ==========
-        const FREE_TOPICS_COUNT = 10;
+        // ========== 3-STAGE FUNNEL CONTROL ==========
+        const STAGE1_TOPICS = 5; // First 5 Topics = 50 Qs
+        const STAGE2_TOPICS = 5; // Next 5 Topics = 50 Qs after login
         const DEMO_QS_PER_TOPIC = 10;
+
         let currentUser = null;
         let isPremium = false;
-        let userDemoCount = 0;
+        let stage1Count = 0;
+        let stage2Count = 0;
+
+        // Check User Status
+        function checkUserStatus() {
+            const savedUser = localStorage.getItem('tnpsc-user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                isPremium = localStorage.getItem('tnpsc-premium') === 'true';
+                document.getElementById('user-info').classList.remove('hidden');
+                document.getElementById('logout-btn').classList.remove('hidden');
+                document.getElementById('login-btn').classList.add('hidden');
+                document.getElementById('user-name').textContent = currentUser.name;
+                document.getElementById('user-pic').src = currentUser.pic;
+                if (isPremium) document.getElementById('premium-badge').classList.remove('hidden');
+            }
+            stage1Count = parseInt(localStorage.getItem('tnpsc-stage1-count') || '0');
+            stage2Count = parseInt(localStorage.getItem('tnpsc-stage2-count') || '0');
+            updateStageBanner();
+        }
+
+        function updateStageBanner() {
+            if (isPremium) {
+                document.getElementById('stage1-banner').classList.add('hidden');
+                document.getElementById('stage2-banner').classList.add('hidden');
+                document.getElementById('stage3-banner').classList.remove('hidden');
+            } else if (currentUser) {
+                document.getElementById('stage1-banner').classList.add('hidden');
+                document.getElementById('stage2-banner').classList.remove('hidden');
+                document.getElementById('stage2-remaining').textContent = (STAGE2_TOPICS * DEMO_QS_PER_TOPIC) - stage2Count;
+            } else {
+                document.getElementById('stage1-remaining').textContent = (STAGE1_TOPICS * DEMO_QS_PER_TOPIC) - stage1Count;
+            }
+        }
+
+        window.showLogin = () => {
+            document.getElementById('login-overlay').classList.remove('hidden');
+        }
+
+        window.closeLogin = () => {
+            document.getElementById('login-overlay').classList.add('hidden');
+        }
 
         window.loginWithGmail = () => {
-            const email = prompt('Enter your Gmail ID:', 'user@gmail.com');
-            if (email && email.includes('@')) {
-                currentUser = {
-                    email: email,
-                    name: email.split('@')[0],
-                    pic: `https://ui-avatars.com/api/?name=${email.split('@')[0]}&background=7c3aed&color=fff`
-                };
-                localStorage.setItem('tnpsc-user', JSON.stringify(currentUser));
-                localStorage.setItem('tnpsc-demo-count', '0');
-                initApp();
+            const email = document.getElementById('email-input').value.trim();
+            if (!email ||!email.includes('@') ||!email.includes('.')) {
+                alert('Valid Gmail ID Enter பண்ணுங்க: example@gmail.com');
+                return;
             }
+            currentUser = {
+                email: email,
+                name: email.split('@')[0],
+                pic: `https://ui-avatars.com/api/?name=${email.split('@')[0]}&background=7c3aed&color=fff`
+            };
+            localStorage.setItem('tnpsc-user', JSON.stringify(currentUser));
+            localStorage.setItem('tnpsc-stage2-count', '0');
+            document.getElementById('login-overlay').classList.add('hidden');
+            checkUserStatus();
+            alert('✅ Login Success! இப்போ 50 More Free Questions Attend பண்ணலாம்');
         }
 
         window.logoutUser = () => {
@@ -234,52 +293,21 @@
             location.reload();
         }
 
-        function checkUserLogin() {
-            const savedUser = localStorage.getItem('tnpsc-user');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                isPremium = localStorage.getItem('tnpsc-premium') === 'true';
-                userDemoCount = parseInt(localStorage.getItem('tnpsc-demo-count') || '0');
-                return true;
-            }
-            return false;
-        }
-
-        function initApp() {
-            document.getElementById('login-overlay').classList.add('hidden');
-            document.getElementById('main-content').classList.remove('hidden');
-            document.getElementById('user-info').classList.remove('hidden');
-            document.getElementById('logout-btn').classList.remove('hidden');
-            document.getElementById('stats-btn').classList.remove('hidden');
-            document.getElementById('user-name').textContent = currentUser.name;
-            document.getElementById('user-pic').src = currentUser.pic;
-
-            if (isPremium) {
-                document.getElementById('premium-banner').classList.add('hidden');
-                document.getElementById('premium-badge').classList.remove('hidden');
-            } else {
-                document.getElementById('premium-banner').classList.remove('hidden');
-                document.getElementById('demo-remaining').textContent = (FREE_TOPICS_COUNT * DEMO_QS_PER_TOPIC) - userDemoCount;
-            }
-
-            init();
-        }
-
         window.handlePayment = () => {
             localStorage.setItem('tnpsc-payment-initiated', 'true');
-            setTimeout(() => {
-                alert('Payment Initiated! ₹99 Pay பண்ணிட்டு "Verify Payment" Click பண்ணுங்க');
-            }, 500);
+            alert('GPay Open ஆகும். ₹99 Pay பண்ணிட்டு UTR Number Copy பண்ணி Verify பண்ணுங்க');
         }
 
         window.verifyPayment = () => {
-            const paymentCode = prompt('Payment Transaction ID / UTR Number Enter பண்ணுங்க:\n\n(Testing: "DEMO" Type பண்ணுங்க)');
-            if (paymentCode && paymentCode.length > 3) {
+            const paymentCode = document.getElementById('payment-code').value.trim().toUpperCase();
+            if (paymentCode.length > 3) {
                 localStorage.setItem('tnpsc-premium', 'true');
                 localStorage.setItem('tnpsc-payment-id', paymentCode);
                 isPremium = true;
-                alert('✅ Payment Verified! Premium Unlocked!\n\nஇப்போ 200 Topics × 100 Qs = 20,000 Qs Full Access');
+                alert('✅ Payment Verified! Premium Unlocked!\n\nஇப்போ 20,000 Qs Full Access');
                 location.reload();
+            } else {
+                alert('Valid UTR Number Enter பண்ணுங்க அல்லது DEMO Type பண்ணுங்க');
             }
         }
 
@@ -289,12 +317,4 @@
                 units: {
                     "இலக்கணம்": ["1. எழுத்து-பிரித்தல்", "2. சேர்த்தல்", "3. சந்திப்பிழை", "4. குறில்-நெடில்", "5. ல-ள-ழ", "6. ன-ண", "7. ர-ற", "8. இன எழுத்து", "9. சுட்டு எழுத்து", "10. வினா எழுத்து", "11. ஒருமை-பன்மை", "12. வேர்ச்சொல்", "13. வினைமுற்று", "14. வினையெச்சம்", "15. வினையாலணையும் பெயர்", "16. பெயரெச்சம்", "17. அயற்சொல்", "18. தமிழ்ச்சொல்", "19. எதிர்ச்சொல்", "20. வினைச்சொல்", "21. எழுத்துப்பிழை", "22. ஒற்றுப்பிழை", "23. இரு வினை வேறுபாடு", "24. எதிர்ச்சொல் அகராதி", "25. ஓரெழுத்து ஒரு மொழி", "26. ஒருபொருள் பலசொல்", "27. பொருந்தா சொல்", "28. அகர வரிசை", "29. இருபொருள் சொல்", "30. பேச்சு-எழுத்து வழக்கு", "31. சொல்லும் பொருளும்", "32. ஊர்ப்பெயர் மரூஉ", "33. பிழை திருத்தம்", "34. தூய தமிழ்", "35. சொல் உருவாக்கம்", "36. அடைப்பு சொல்", "37. சொற்றொடர்", "38. தொடர் வகை", "39. தன்வினை-பிறவினை", "40. ஒருமை-பன்மை பிழை", "41. திணை மரபு", "42. பால் மரபு", "43. காலம்", "44. இளமைப் பெயர்", "45. ஒலி மரபு", "46. வினை மரபு", "47. தொகை மரபு", "48. நிறுத்தல் குறி", "49. கலைச்சொல்-அறிவியல்", "50. கலைச்சொல்-IT"],
                     "இலக்கியம்": ["51. தொல்காப்பியம்", "52. நற்றிணை", "53. குறுந்தொகை", "54. ஐங்குறுநூறு", "55. பதிற்றுப்பத்து", "56. பரிபாடல்", "57. கலித்தொகை", "58. அகநானூறு", "59. புறநானூறு", "60. பத்துப்பாட்டு", "61. திருக்குறள்-ஒழுக்கம்", "62. திருக்குறள்-பொறை", "63. திருக்குறள்-ஊக்கம்", "64. திருக்குறள்-விருந்து", "65. திருக்குறள்-அறன்", "66. திருக்குறள்-ஈகை", "67. திருக்குறள்-பெரியார்", "68. திருக்குறள்-வினை", "69. திருக்குறள்-அவை", "70. திருக்குறள்-கண்ணோட்டம்", "71. நாலடியார்", "72. நான்மணிக்கடிகை", "73. பழமொழி நானூறு", "74. முதுமொழிக்காஞ்சி", "75. திரிகடுகம்", "76. சிலப்பதிகாரம்", "77. மணிமேகலை", "78. சீவகசிந்தாமணி", "79. தேவாரம்", "80. திருவாசகம்"],
-                    "அறிஞர்கள்": ["81. கபிலர்", "82. பரணர்", "83. நக்கீரர்", "84. ஔவையார்", "85. திருவள்ளுவர்", "86. கம்பர்", "87. சேக்கிழார்", "88. ஒட்டக்கூத்தர்", "89. புகழேந்தி", "90. நச்சினார்க்கினியர்", "91. பரிமேலழகர்", "92. உ.வே.சா", "93. தே.பொ.மீனாட்சி", "94. சி.இலக்குவனார்", "95. தேவநேய பாவாணர்", "96. பாவலரேறு", "97. ஜி.யு.போப்", "98. வீரமாமுனிவர்", "99. பாரதியார்", "100. பாரதிதாசன்"]
-                }
-            },
-            science: {
-                units: {
-                    "Physics": ["1. Units & Measurement", "2. Motion-Newton Laws", "3. Work-Power-Energy", "4. Gravitation", "5. Properties of Matter", "6. Heat & Thermo", "7. Light-Optics", "8. Sound Waves", "9. Electricity", "10. Magnetism", "11. Nuclear Physics", "12. Fluid Mechanics", "13. Surface Tension", "14. Viscosity", "15. Elasticity", "16. SHM", "17. Waves", "18. EM Waves", "19. Atomic Physics", "20. Electronics", "21. Semiconductor", "22. LASER", "23. Fiber Optics", "24. Nanotech", "25. Quantum Physics"],
-                    "Chemistry": ["26. Matter & Atom", "27. Atomic Structure", "28. Periodic Table", "29. Chemical Bonding", "30. States of Matter", "31. Solutions", "32. Acids-Bases-Salts", "33. pH Scale", "34. Chemical Reactions", "35. Redox", "36. Electrochemistry", "37. Organic Chemistry", "38. Hydrocarbons", "39. Polymers", "40. Biomolecules", "41. Environmental Chemistry", "42. Fertilizers", "43. Pesticides", "44. Medicines", "45. Glass & Cement", "46. Soap & Detergent", "47. Food Chemistry", "48. Metallurgy", "49. Green Chemistry", "50. Nanochemistry"],
-                    "Biology": ["51. Cell Biology", "52. Cell Division", "53. Tissues", "54. Plant Physiology", "55. Photosynthesis", "56. Respiration", "57. Plant Reproduction", "58. Human Digestive", "59. Human Respiratory", "60. Human Circulatory", "61. Human Excretory", "62. Human Nervous", "63. Human Endocrine", "64. Human Reproductive", "65. Genetics", "66. DNA-RNA", "67. Heredity", "68. Evolution", "69. Biotechnology", "70. Microbiology", "71. Bacteria", "72. Virus", "73. Fungi", "74. Immunology", "75. Diseases"],
-  
+                    "அறிஞர்கள்": ["81. கபிலர்", "82. பரணர்", "83. நக்கீரர்", "84. ஔவையார்", "85. திருவள்ளுவர்", 
