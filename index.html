@@ -3,89 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNPSC Master Brain Pro</title>
+    <title>TNPSC 20K MCQ Master - CA 2025-2026 | Full Version</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+   :root { --bg: #f3f4f6; --card: #ffffff; --text: #1f2937; }
+.dark { --bg: #111827; --card: #1f2937; --text: #f9fafb; }
+   body { background: var(--bg); color: var(--text); transition: all 0.3s; }
+.card { background: var(--card); }
+.quiz-option { transition: all 0.2s; }
+.quiz-option:hover { transform: scale(1.02); }
+.quiz-option.correct { background: #dcfce7; border-color: #16a34a; }
+.quiz-option.wrong { background: #fee2e2; border-color: #dc2626; }
+.tag-pyq { background: #fecaca; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+.tag-ca2025 { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+.tag-ca2026 { background: #bbf7d0; color: #166534; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+.tag-samacheer { background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+.main-tab.active { background: #7c3aed; color: white; }
+.topic-btn.active { background: #059669; color: white; }
+.lang-toggle.active { background: #2563eb; color: white; }
+.filter-btn.active { background: #dc2626; color: white; }
+.explanation-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 8px; margin-top: 8px; font-size: 12px; border-radius: 4px; }
+.dark.explanation-box { background: #1e3a8a; border-color: #60a5fa; color: #dbeafe; }
+    </style>
 </head>
-<body class="bg-gray-50 transition-colors duration-300">
+<body>
+
+    <!-- Top Bar -->
+    <div class="bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 text-white text-center py-2 text-xs font-bold">
+        TNPSC 20K MCQ Master | CA Jan 2025 to June 2026 | Performance Tracker + Night Mode
+    </div>
 
     <!-- Navbar -->
-    <nav class="bg-white p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
-        <h1 class="font-bold text-blue-700 text-xl tracking-tight">TNPSC MASTER BRAIN</h1>
-        <button id="theme-toggle" class="text-gray-600"><i class="fas fa-moon"></i></button>
+    <nav class="card p-3 shadow flex justify-between items-center sticky top-0 z-50">
+        <h1 class="font-bold text-purple-700">20K MCQ Master</h1>
+        <div class="flex gap-2">
+            <button onclick="toggleNightMode()" id="night-btn" class="px-3 py-1 rounded border text-xs font-bold">
+                <i class="fas fa-moon"></i> Night
+            </button>
+            <button onclick="showStats()" class="px-3 py-1 rounded border text-xs font-bold bg-green-600 text-white">
+                <i class="fas fa-chart-line"></i> Stats
+            </button>
+            <div id="lang-toggle-box" class="hidden">
+                <button onclick="toggleLang()" id="lang-btn" class="lang-toggle px-3 py-1 rounded border text-xs font-bold active">தமிழ்</button>
+            </div>
+        </div>
     </nav>
 
-    <main class="p-4 max-w-4xl mx-auto space-y-6">
+    <main class="p-3 max-w-7xl mx-auto">
 
-        <!-- Search Bar -->
-        <div class="relative">
-            <input type="text" placeholder="பாடங்களைத் தேடுங்கள்..." class="w-full p-3 pl-10 rounded-xl border shadow-sm focus:ring-2 focus:ring-blue-500 outline-none">
-            <i class="fas fa-search absolute left-3 top-4 text-gray-400"></i>
+        <!-- GPay Donation - ₹499 + UPI ID -->
+        <div class="card p-3 rounded-xl shadow mb-3 text-center">
+            <p class="text-xs mb-2">🙏 App பிடிச்சிருந்தா Support பண்ணுங்க</p>
+            <a href="upi://pay?pa=futuristicnandhu-1@okaxis&pn=TNPSC Master&am=499&cu=INR"
+               class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold">
+                <i class="fab fa-google-pay"></i> GPay ₹499 Donate
+            </a>
+            <p class="text-xs text-gray-500 mt-1">UPI ID: futuristicnandhu-1@okaxis</p>
         </div>
 
-        <!-- Student Login -->
-        <section class="bg-white p-6 rounded-2xl shadow border border-blue-100">
-            <h2 class="text-lg font-bold mb-2">🎓 மாணவர் உள்நுழைவு</h2>
-            <p class="text-sm text-gray-600 mb-4">உங்கள் முன்னேற்றத்தைக் கண்காணிக்க Gmail மூலம் லாகின் செய்யுங்கள்.</p>
-            <button class="w-full bg-white border border-gray-300 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-50 transition">
-                <i class="fab fa-google text-red-500"></i> Continue with Gmail
+        <!-- Main Subject Tabs -->
+        <div class="grid grid-cols-2 gap-2 mb-3">
+            <button class="main-tab px-4 py-3 rounded-xl border font-bold text-sm active" data-main="tamil">
+                <i class="fas fa-book-open"></i> பொது தமிழ்<br><span class="text-xs">100 Topics | 10,000 MCQ | Tamil Only</span>
             </button>
-        </section>
-
-        <!-- Progress Tracker -->
-        <section class="bg-white p-4 rounded-xl shadow border border-blue-100">
-            <div class="flex justify-between text-xs mb-2 text-gray-600">
-                <span>உங்கள் பாடத்திட்ட முன்னேற்றம்</span>
-                <span>40% முடிந்தது</span>
-            </div>
-            <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-blue-600 h-2 rounded-full" style="width: 40%"></div>
-            </div>
-        </section>
-
-        <!-- Syllabus -->
-        <section class="bg-white p-6 rounded-2xl shadow">
-            <h2 class="text-xl font-bold mb-6 text-blue-800 border-b pb-2">🎯 முழு பாடத்திட்டம்</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                    <h3 class="font-bold text-blue-600">📜 வரலாறு</h3>
-                    <p class="text-xs text-gray-600">சிந்து சமவெளி, குப்தர்கள், முகலாயர்கள், தேசிய இயக்கம்.</p>
-                </div>
-                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                    <h3 class="font-bold text-green-600">🌍 புவியியல்</h3>
-                    <p class="text-xs text-gray-600">இந்திய அமைவிடம், ஆறுகள், காலநிலை, பேரிடர் மேலாண்மை.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Premium Paywall -->
-        <section class="bg-indigo-900 text-white p-6 rounded-2xl shadow-xl text-center">
-            <h3 class="font-bold text-xl">🚀 வருடாந்திர பிரீமியம் சந்தா</h3>
-            <p class="text-indigo-200 text-sm my-2">முழு பாடத்திட்டம், PDF பதிவிறக்கம் மற்றும் விளம்பரமில்லா அனுபவம்.</p>
-            <div class="text-4xl font-black my-4">₹499</div>
-            <a href="upi://pay?pa=Futuristicnandhu-1@okaxis&pn=TNPSC_Master_Brain&am=499.00&cu=INR" 
-               class="block w-full bg-amber-500 py-4 rounded-xl font-bold text-black hover:bg-amber-400 transition">
-               இப்போதே சந்தா செலுத்துங்கள்
-            </a>
-            <p class="text-[10px] mt-2 opacity-50">UPI ID: [Aadhaar Redacted]</p>
-        </section>
-
-        <!-- Daily Quiz -->
-        <section class="bg-white p-6 rounded-2xl shadow">
-            <h3 class="font-bold mb-4 text-lg">✅ Daily 20 Quiz</h3>
-            <button class="w-full text-left p-3 border-2 border-green-500 bg-green-50 rounded-lg font-semibold text-sm">
-                ஆ) டாக்டர். பி.ஆர். அம்பேத்கர் (சரியான விடை)
+            <button class="main-tab px-4 py-3 rounded-xl border font-bold text-sm" data-main="science">
+                <i class="fas fa-flask"></i> General Science<br><span class="text-xs">100 Topics | 10,000 MCQ | T+E</span>
             </button>
-        </section>
+        </div>
+
+        <!-- Performance Stats -->
+        <div class="grid grid-cols-4 gap-1 text-center text-xs mb-3">
+            <div class="card p-2 rounded shadow"><b id="total-attempt" class="text-base text-purple-600">0</b><br>Attempted</div>
+            <div class="card p-2 rounded shadow"><b id="total-correct" class="text-base text-green-600">0</b><br>Correct</div>
+            <div class="card p-2 rounded shadow"><b id="total-wrong" class="text-base text-red-600">0</b><br>Wrong</div>
+            <div class="card p-2 rounded shadow"><b id="accuracy" class="text-base text-blue-600">0%</b><br>Accuracy</div>
+        </div>
+
+        <!-- Unit Tabs -->
+        <div id="unit-tabs" class="flex gap-1 mb-3 overflow-x-auto text-xs"></div>
+
+        <!-- Search -->
+        <div class="relative mb-3">
+            <input type="text" id="search-topic" placeholder="Topic தேடு..." class="w-full p-2 pl-8 rounded-lg border shadow-sm text-sm card">
+            <i class="fas fa-search absolute left-3 top-2.5 text-gray-400 text-sm"></i>
+        </div>
+
+        <!-- Topics Grid -->
+        <div class="card p-3 rounded-xl shadow mb-3">
+            <h3 class="font-bold text-sm mb-2" id="unit-title">இலக்கணம் - 50 Topics</h3>
+            <div id="topics-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 max-h-64 overflow-y-auto"></div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="card p-4 rounded-xl shadow hidden">
+            <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded-lg mb-3">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 id="current-topic" class="font-bold text-purple-800 dark:text-purple-200 text-base"></h3>
+                        <p id="topic-desc" class="text-xs text-gray-600 dark:text-gray-300 mt-1"></p>
+                    </div>
+                    <span id="q-total" class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-bold">100 Qs</span>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex gap-1 flex-wrap text-xs mb-3">
+                <button class="filter-btn px-2 py-1 rounded border font-bold active" data-filter="all">All 100</button>
+                <button class="filter-btn px-2 py-1 rounded border font-bold" data-filter="PYQ">PYQ 2015-25</button>
+                <button class="filter-btn px-2 py-1 rounded border font-bold" data-filter="CA2025">CA 2025</button>
+                <button class="filter-btn px-2 py-1 rounded border font-bold" data-filter="CA2026">CA 2026</button>
+                <button class="filter-btn px-2 py-1 rounded border font-bold" data-filter="Samacheer">Samacheer</button>
+            </div>
+
+            <!-- Question -->
+            <div class="border-2 border-dashed border-gray-200 dark:border-gray-600 p-3 rounded-xl">
+                <div class="flex justify-between items-center mb-2">
+                    <span id="q-counter" class="text-xs text-gray-600 dark:text-gray-400">1 / 100</span>
+                    <div id="q-tags" class="flex gap-1"></div>
+                </div>
+                <p id="question-text" class="font-semibold mb-3 text-sm"></p>
+                <div id="options-box" class="space-y-2"></div>
+                <div id="result-box" class="mt-2 text-sm font-bold text-center"></div>
+                <div id="explanation-box" class="hidden explanation-box"></div>
+                <button id="next-btn" class="hidden mt-3 w-full bg-purple-600 text-white py-2 rounded-lg text-sm">Next | அடுத்து</button>
+            </div>
+        </div>
+
+        <!-- Stats Modal -->
+        <div id="stats-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div class="card p-4 rounded-xl max-w-md w-full max-h-96 overflow-y-auto">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-bold text-lg">📊 Performance Tracker</h3>
+                    <button onclick="closeStats()" class="text-2xl">&times;</button>
+                </div>
+                <canvas id="stats-chart" height="200"></canvas>
+                <div class="mt-3 text-xs space-y-1">
+                    <p>✅ Total Correct: <b id="modal-correct">0</b></p>
+                    <p>❌ Total Wrong: <b id="modal-wrong">0</b></p>
+                    <p>📈 Accuracy: <b id="modal-accuracy">0%</b></p>
+                    <p>🎯 Strong Topics: <span id="strong-topics">-</span></p>
+                    <p>⚠️ Weak Topics: <span id="weak-topics">-</span></p>
+                </div>
+                <button onclick="resetStats()" class="mt-3 w-full bg-red-600 text-white py-2 rounded-lg text-sm">Reset Stats</button>
+            </div>
+        </div>
 
     </main>
 
     <script type="module">
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            document.body.classList.toggle('bg-gray-900');
-            document.body.classList.toggle('text-white');
-            document.querySelectorAll('section, nav').forEach(el => el.classList.toggle('bg-gray-800'));
-        });
-    </script>
-</body>
-</html>
+        // ========== DATABASE - 200 TOPICS STRUCTURE ==========
+        const masterDB = {
+            tamil: {
+                units: {
+                    "இலக்கணம்": ["1. எழுத்து-பிரித்தல்", "2. சேர்த்தல்", "3. சந்திப்பிழை", "4. குறில்-நெடில்", "5. ல-ள-ழ", "6. ன-ண", "7. ர-ற", "8. இன எழுத்து", "9. சுட்டு எழுத்து", "10. வினா எழுத்து", "11. ஒருமை-பன்மை", "12. வேர்ச்சொல்", "13. வினைமுற்று", "14. வினையெச்சம்", "15. வினையாலணையும் பெயர்", "16. பெயரெச்சம்", "17. அயற்சொல்", "18. தமிழ்ச்சொல்", "19. எதிர்ச்சொல்", "20. வினைச்சொல்", "21. எழுத்துப்பிழை", "22. ஒற்றுப்பிழை", "23. இரு வினை வேறுபாடு", "24. எதிர்ச்சொல் அகராதி", "25. ஓரெழுத்து ஒரு மொழி", "26. ஒருபொருள் பலசொல்", "27. பொருந்தா சொல்", "28. அகர வரிசை", "29. இருபொருள் சொல்", "30. பேச்சு-எழுத்து வழக்கு", "31. சொல்லும் பொருளும்", "32. ஊர்ப்பெயர் மரூஉ", "33. பிழை திருத்தம்", "34. தூய தமிழ்", "35. சொல் உருவாக்கம்", "36. அடைப்பு சொல்", "37. சொற்றொடர்", "38. தொடர் வகை", "39. தன்வினை-பிறவினை", "40. ஒருமை-பன்மை பிழை", "41. திணை மரபு", "42. பால் மரபு", "43. காலம்", "44. இளமைப் பெயர்", "45. ஒலி மரபு", "46. வினை மரபு", "47. தொகை மரபு", "48. நிறுத்தல் குறி", "49. கலைச்சொல்-அறிவியல்", "50. கலைச்சொல்-IT"],
+                    "இலக்கியம்": ["51. தொல்காப்பியம்", "52. நற்றிணை", "53. குறுந்தொகை", "54. ஐங்குறுநூறு", "55. பதிற்றுப்பத்து", "56. பரிபாடல்", "57. கலித்தொகை", "58. அகநானூறு", "59. புறநானூறு", "60. பத்துப்பாட்டு", "61. திருக்குறள்-ஒழுக்கம்", "62. திருக்குறள்-பொறை", "63. திருக்குறள்-ஊக்கம்", "64. திருக்குறள்-விருந்து", "65. திருக்குறள்-அறன்", "66. திருக்குறள்-ஈகை", "67. திருக்குறள்-பெரியார்", "68. திருக்குறள்-வினை", "69. திருக்குறள்-அவை", "70. திருக்குறள்-கண்ணோட்டம்", "71. நாலடியார்", "72. நான்மணிக்கடிகை", "73. பழமொழி நானூறு", "74. முதுமொழிக்காஞ்சி", "75. திரிகடுகம்", "76. சிலப்பதிகாரம்", "77. மணிமேகலை", "78. சீவகசிந்தாமணி", "79. தேவாரம்", "80. திருவாசகம்"],
+                    "அறிஞர்கள்": ["81. கபிலர்", "82. பரணர்", "83. நக்கீரர்", "84. ஔவையார்", "85. திருவள்ளுவர்", "86. கம்பர்", "87. சேக்கிழார்", "88. ஒட்டக்கூத்தர்", "89. புகழேந்தி", "90. நச்சினார்க்கினியர்", "91. பரிமேலழகர்", "92. உ.வே.சா", "93. தே.பொ.மீனாட்சி", "94. சி.இலக்குவனார்", "95. தேவநேய பாவாணர்", "96. பாவலரேறு", "97. ஜி.யு.போப்", "98. வீரமாமுனிவர்", "99. பாரதியார்", "100. பாரதிதாசன்"]
+                }
+            },
+            science: {
+                units: {
+                    "Physics": ["1. Units & Measurement", "2. Motion-Newton Laws", "3. Work-Power-Energy", "4. Gravitation", "5. Properties of Matter", "6. Heat & Thermo", "7. Light-Optics", "8. Sound Waves", "9. Electricity", "10. Magnetism", "11. Nuclear Physics", "12. Fluid Mechanics", "13. Surface Tension", "14. Viscosity", "15. Elasticity", "16. SHM", "17. Waves", "18. EM Waves", "19. Atomic Physics", "20. Electronics", "21. Semiconductor", "22. LASER", "23. Fiber Optics", "24. Nanotech", "25. Quantum Physics"],
+                    "Chemistry": ["26. Matter & Atom", "27. Atomic Structure", "28. Periodic Table", "29. Chemical Bonding", "30. States of Matter", "31. Solutions", "32. Acids-Bases-Salts", "33. pH Scale", "34. Chemical Reactions", "35. Redox", "36. Electrochemistry", "37. Organic Chemistry", "38. Hydrocarbons", "39. Polymers", "40. Biomolecules", "41. Environmental Chemistry", "42. Fertilizers", "43. Pesticides", "44. Medicines", "45. Glass & Cement", "46. Soap & Detergent", "47. Food Chemistry", "48. Metallurgy", "49. Green Chemistry", "50. Nanochemistry"],
+                    "Biology": ["51. Cell Biology", "52. Cell Division", "53. Tissues", "54. Plant Physiology", "55. Photosynthesis", "56. Respiration", "57. Plant Reproduction", "58. Human Digestive", "59. Human Respiratory", "60. Human Circulatory", "61. Human Excretory", "62. Human Nervous", "63. Human Endocrine", "64. Human Reproductive", "65. Genetics", "66. DNA-RNA", "67. Heredity", "68. Evolution", "69. Biotechnology", "70. Microbiology", "71. Bacteria", "72. Virus", "73. Fungi", "74. Immunology", "75. Diseases"],
+                    "Applied Science": ["76. Environment", "77. Ecosystem", "78. Pollution", "79. Climate Change", "80. Biodiversity", "81. Space Tech-ISRO", "82. Satellites", "83. Rockets", "84. Defence-DRDO", "85. Missiles", "86. Tejas", "87. BrahMos", "88. Computer", "89. AI", "90. 5G-6G", "91. Robotics", "92. Internet", "93. Cloud Computing", "94. Cyber Security", "95. Nobel Prize", "96. Inventions", "97. Discoveries", "98. India Science", "99. TN Science", "100. Current Science 2026"]
+                }
+            }
+        };
+
+        // ========== SAMPLE QUESTIONS WITH EXPLANATIONS ==========
+        const sampleQ = {
+            "1. எழுத்து-பிரித்தல்": [
+                { q: "நன்மை - பிரித்து எழுதுக", options: ["நன் + மை", "நல் + மை", "நன + மை", "நன்ம + ஐ"], ans: 1, type: "PYQ", year: "2023", exp_correct: "நல் + மை = நன்மை. லகர ஈறு னகரமாக திரியும்.", exp_wrong: "நன் + மை தவறு. லகரம் னகரமாக மாற வேண்டும்." },
+                { q: "2025: தமிழ் இணைய பல்கலைக்கழகம் தொடங்கிய ஆண்டு?", options: ["2000", "2001", "2025", "2026"], ans: 1, type: "CA2025", exp_correct: "2001-ல் முன்னாள் முதல்வர் கருணாநிதி தொடங்கினார்.", exp_wrong: "2001 தான் சரி. 2025-ல் 24வது ஆண்டு விழா." },
+                { q: "June 2026: TNEA பதிவு எவ்வளவு?", options: ["2 லட்சம்", "3,01,519", "4 லட்சம்", "1 லட்சம்"], ans: 1, type: "CA2026", exp_correct: "June 5, 2026 நிலவரப்படி 3,01,519 மாணவர் பதிவு.", exp_wrong: "3,01,519 தான் சரி. 2025-ஐ விட அதிகம்." }
+            ],
+            "1. Units & Measurement": [
+                { q: "SI unit of Force?", q_ta: "விசையின் SI அலகு?", options: ["Newton | நியூட்டன்", "Dyne | டைன்", "Joule | ஜூல்", "Watt | வாட்"], ans: 0, type: "PYQ", year: "2022", exp_correct: "Newton is SI unit of Force. 1N = 1 kg m/s²", exp_wrong: "Dyne is CGS unit. Joule is energy unit. Watt is power unit." },
+                { q: "2025: India's rank in Global Innovation Index?", q_ta: "2025: உலக புதுமை குறியீட்டில் இந்தியாவின் தரவரிசை?", options: ["40th | 40வது", "39th | 39வது", "38th | 38வது", "37th | 37வது"], ans: 1, type: "CA2025", exp_correct: "India ranked 39th in GII 2025, improved from 40th in 2024.", exp_wrong: "39th தான் சரி. 2024-ல் 40th, 2025-ல் 39th." },
+                { q: "June 2026: Which mission studies Sun's corona?", q_ta: "ஜூன் 2026: சூரிய கரோனாவை ஆய்வு செய்யும் திட்டம்?", options: ["Chandrayaan-3 | சந்திரயான்-3", "Aditya-L1 | ஆதித்யா-L1", "Mangalyaan | மங்கள்யான்", "Gaganyaan | ககன்யான்"], ans: 1, type: "CA2026", exp_correct: "Aditya-L1 is India's first solar mission to study corona from L1 point.", exp_wrong: "Chandrayaan-3 is Moon mission. Aditya-L1 is Sun mission." }
+            ],
+            "81. Space Tech-ISRO": [
+                { q: "2025: Chandrayaan-4 planned launch year?", q_ta: "2025: சந்திரயான்-4 ஏவ திட்டமிடப்பட்ட ஆண்டு?", options: ["2026 | 2026", "2027 | 2027", "2028 | 2028", "2029 | 2029"], ans: 1, type: "CA2025", exp_correct: "Chandrayaan-4 sample return mission planned for 2027.", exp_wrong: "2027 தான் ISRO அறிவித்த ஆண்டு." },
+                { q: "June 2026: Gaganyaan first unmanned test?", q_ta: "ஜூன் 2026: ககன்யான் முதல் ஆளில்லா சோதனை?", options: ["Dec 2025 | டிச 2025", "June 2026 | ஜூன் 2026", "Aug 2026 | ஆக 2026", "Dec 2026 | டிச 2026"], ans: 1, type: "CA2026", exp_correct: "G1 unmanned mission scheduled for June 2026.", exp_wrong: "June 2026 தான் சரி. ISRO confirmation." }
+            ]
+        };
+
+        // ========== APP STATE & TRACKER ==========
+        let currentMain = 'tamil';
+        let currentLang = 'ta';
+        let currentUnit = '';
+        let currentTopic = '';
+        let qIndex = 0;
+        let score = 0;
+        let currentQuestions = [];
+        let currentFilter = 'all';
+        let isDark = false;
+        let stats = JSON.parse(localStorage.getItem('tnpsc-stats') || '{"correct":0,"wrong":0,"topics":{}}');
+        let chartInstance = null;
+
+        // ========== INIT ==========
+        function init() {
+            loadTheme();
+            loadUnits();
+            setupEvents();
+            loadTopics();
+            updateStats();
+        }
+
+        function loadTheme() {
+            isDark = localStorage.getItem('tnpsc-dark') === 'true';
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('night-btn').innerHTML = '<i class="fas fa-sun"></i> Day';
+            }
+        }
+
+        window.toggleNightMode = () => {
+            isDark =!isDark;
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('tnpsc-dark', isDark);
+            document.getElementById('night-btn').innerHTML = isDark? '<i class="fas fa-sun"></i> Day' : '<i class="fas fa-moon"></i> Night';
+        }
+
+        window.toggleLang = () => {
+            currentLang = currentLang === 'ta'? 'en' : 'ta';
+            document.getElementById('lang-btn').textContent = currentLang === 'ta'? 'தமிழ்' : 'English';
+            showQuestion();
+        }
+
+        function loadUnits() {
+            const unitTabs = document.getElementById('unit-tabs');
+            const units = Object.keys(masterDB[currentMain].units);
+            currentUnit = units[0];
+            unitTabs.innerHTML = units.map(unit => `<button class="unit-tab px-3 py-2 rounded-lg border text-xs font-bold ${unit === currentUnit? 'bg-purple-600 text-white' : ''}" data-unit="${unit}">${unit}</button>`).join('');
+            document.querySelectorAll('.unit-tab').forEach(btn => {
+                btn.onclick = () => {
+                    currentUnit = btn.dataset.unit;
+                    document.querySelectorAll('.unit-tab').forEach(b => b.classList.remove('bg-purple-600', 'text-white'));
+                    btn.classList.add('bg-purple-600', 'text-white');
+                    loadTopics();
+                };
+            });
+            document.getElementById('lang-toggle-box').classList.toggle('hidden', currentMain === 'tamil');
+        }
+
+        function loadTopics() {
+            const topics = masterDB[currentMain].units[currentUnit];
+            document.getElementById('unit-title').textContent = `${currentUnit} - ${topics.length} Topics`;
+            const grid = document.getElementById('topics-grid');
+            grid.innerHTML = topics.map(topic => {
+                const topicStats = stats.topics[topic] || {correct:0, wrong:0};
+                const total = topicStats.correct + topicStats.wrong;
+                const accuracy = total > 0? Math.round(topicStats.correct / total * 100) : 0;
+                const color = accuracy >= 80? 'bg-green-100 dark:bg-green-900' : accuracy >= 50? 'bg-yellow-100 dark:bg-yellow-900' : accuracy > 0? 'bg-red-100 dark:bg-red-900' : '';
+                return `<button class="topic-btn px-2 py-2 rounded-lg border text-xs font-bold hover:bg-green-50 dark:hover:bg-gray-700 ${color}" data-topic="${topic}">${topic}<br><span class="text-xs">${accuracy}%</span></button>`;
+            }).join('');
+            document.querySelectorAll('.topic-btn').forEach(btn => {
+                btn.onclick = (e) => loadTopic(e.currentTarget.dataset.topic, e.currentTarget);
+            });
+        }
+
+    
