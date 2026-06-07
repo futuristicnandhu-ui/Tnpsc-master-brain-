@@ -3,51 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNPSC Master Brain - Final Edition</title>
+    <title>TNPSC Master Brain Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-100 transition-colors duration-300">
+<body class="bg-gray-50 transition-colors duration-300">
 
-    <!-- Navbar with Dark Mode & Notification -->
-    <nav class="bg-white p-4 shadow flex justify-between items-center sticky top-0 z-50">
-        <h1 class="font-bold text-blue-600">TNPSC Master Brain</h1>
-        <div class="flex gap-4">
-            <button id="theme-toggle" class="text-gray-600"><i class="fas fa-moon"></i></button>
-            <button class="text-gray-600"><i class="fas fa-bell"></i></button>
-        </div>
+    <!-- Navbar -->
+    <nav class="bg-white p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+        <h1 class="font-bold text-blue-700 text-xl tracking-tight">TNPSC MASTER BRAIN</h1>
+        <button id="theme-toggle" class="text-gray-600"><i class="fas fa-moon"></i></button>
     </nav>
 
-    <div id="main-content" class="p-4 max-w-4xl mx-auto">
-        <!-- Dashboard Sections -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white p-6 rounded-2xl shadow">
-                <h3 class="font-bold mb-2">🏆 Leaderboard</h3>
-                <p class="text-sm text-gray-500">முதலிடம்: நந்தினி - 98%</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl shadow">
-                <h3 class="font-bold mb-2">⏳ Study Tracker</h3>
-                <p>இன்றைய நேரம்: <span id="study-time">45</span> நிமிடம்</p>
-            </div>
+    <main class="p-4 max-w-4xl mx-auto space-y-6">
+
+        <!-- Search Bar -->
+        <div class="relative">
+            <input type="text" placeholder="பாடங்களைத் தேடுங்கள்..." class="w-full p-3 pl-10 rounded-xl border shadow-sm focus:ring-2 focus:ring-blue-500 outline-none">
+            <i class="fas fa-search absolute left-3 top-4 text-gray-400"></i>
         </div>
 
-        <!-- Contact/About Section -->
-        <div class="mt-8 bg-blue-900 text-white p-6 rounded-2xl shadow-lg">
-            <h3 class="font-bold mb-2">Contact Us</h3>
-            <p class="text-sm">சந்தேகங்களுக்கு மின்னஞ்சல் அனுப்பவும்:</p>
-            <a href="mailto:support@tnpscmaster.com" class="text-amber-400 font-bold">support@tnpscmaster.com</a>
-        </div>
-    </div>
+        <!-- Student Login -->
+        <section class="bg-white p-6 rounded-2xl shadow border border-blue-100">
+            <h2 class="text-lg font-bold mb-2">🎓 மாணவர் உள்நுழைவு</h2>
+            <p class="text-sm text-gray-600 mb-4">உங்கள் முன்னேற்றத்தைக் கண்காணிக்க Gmail மூலம் லாகின் செய்யுங்கள்.</p>
+            <button class="w-full bg-white border border-gray-300 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-50 transition">
+                <i class="fab fa-google text-red-500"></i> Continue with Gmail
+            </button>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section class="bg-white p-4 rounded-xl shadow border border-blue-100">
+            <div class="flex justify-between text-xs mb-2 text-gray-600">
+                <span>உங்கள் பாடத்திட்ட முன்னேற்றம்</span>
+                <span>40% முடிந்தது</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-blue-600 h-2 rounded-full" style="width: 40%"></div>
+            </div>
+        </section>
+
+        <!-- Syllabus -->
+        <section class="bg-white p-6 rounded-2xl shadow">
+            <h2 class="text-xl font-bold mb-6 text-blue-800 border-b pb-2">🎯 முழு பாடத்திட்டம்</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                    <h3 class="font-bold text-blue-600">📜 வரலாறு</h3>
+                    <p class="text-xs text-gray-600">சிந்து சமவெளி, குப்தர்கள், முகலாயர்கள், தேசிய இயக்கம்.</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                    <h3 class="font-bold text-green-600">🌍 புவியியல்</h3>
+                    <p class="text-xs text-gray-600">இந்திய அமைவிடம், ஆறுகள், காலநிலை, பேரிடர் மேலாண்மை.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Paywall -->
+        <section class="bg-indigo-900 text-white p-6 rounded-2xl shadow-xl text-center">
+            <h3 class="font-bold text-xl">🚀 வருடாந்திர பிரீமியம் சந்தா</h3>
+            <p class="text-indigo-200 text-sm my-2">முழு பாடத்திட்டம், PDF பதிவிறக்கம் மற்றும் விளம்பரமில்லா அனுபவம்.</p>
+            <div class="text-4xl font-black my-4">₹499</div>
+            <a href="upi://pay?pa=Futuristicnandhu-1@okaxis&pn=TNPSC_Master_Brain&am=499.00&cu=INR" 
+               class="block w-full bg-amber-500 py-4 rounded-xl font-bold text-black hover:bg-amber-400 transition">
+               இப்போதே சந்தா செலுத்துங்கள்
+            </a>
+            <p class="text-[10px] mt-2 opacity-50">UPI ID: [Aadhaar Redacted]</p>
+        </section>
+
+        <!-- Daily Quiz -->
+        <section class="bg-white p-6 rounded-2xl shadow">
+            <h3 class="font-bold mb-4 text-lg">✅ Daily 20 Quiz</h3>
+            <button class="w-full text-left p-3 border-2 border-green-500 bg-green-50 rounded-lg font-semibold text-sm">
+                ஆ) டாக்டர். பி.ஆர். அம்பேத்கர் (சரியான விடை)
+            </button>
+        </section>
+
+    </main>
 
     <script type="module">
-        // Dark Mode Logic
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
+        document.getElementById('theme-toggle').addEventListener('click', () => {
             document.body.classList.toggle('bg-gray-900');
             document.body.classList.toggle('text-white');
+            document.querySelectorAll('section, nav').forEach(el => el.classList.toggle('bg-gray-800'));
         });
-
-        // Firebase logic remains the same as before...
     </script>
 </body>
 </html>
